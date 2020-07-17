@@ -1,5 +1,5 @@
-# EasyMorse
-A light weight Morse code library to be used as a method of Communication along adaptive switches in open-source Assistive Technology projects.
+# EasyMorseBlue
+A light weight Morse code library for Bluefruit bluetooth modules to be used as a method of Communication along adaptive switches in open-source Assistive Technology projects.
 
 This is a light weight morse library based on morse2go project with addition of direct keyboard and mouse support. 
 
@@ -293,6 +293,10 @@ This is a light weight morse library based on morse2go project with addition of 
     <td>----</td>
     <td>Backspace </td>
   </tr>
+   <tr>
+    <td>---..-.</td>
+    <td>Tab </td>
+  </tr>
     <tr>
     <td>..-.-</td>
     <td>Shift</td>
@@ -365,6 +369,55 @@ This is a light weight morse library based on morse2go project with addition of 
     <td>-....-</td>
     <td>PrtScn</td>
   </tr>
+ 
+  <tr>
+    <td>--.----</td>
+    <td>F1</td>
+  </tr>
+  <tr>
+    <td>--..---</td>
+    <td>F2</td>
+  </tr>
+  <tr>
+    <td>--...--</td>
+    <td>F3</td>
+  </tr> 
+  <tr>
+    <td>--....-</td>
+    <td>F4</td>
+  </tr>    
+  <tr>
+    <td>--.....</td>
+    <td>F5</td>
+  </tr>    
+  <tr>
+    <td>---....</td>
+    <td>F6</td>
+  </tr>     
+  <tr>
+    <td>----...</td>
+    <td>F7</td>
+  </tr>    
+ <tr>
+    <td>-----..</td>
+    <td>F8</td>
+  </tr>     
+  <tr>
+    <td>------.</td>
+    <td>F9</td>
+  </tr>      
+  <tr>
+    <td>-------</td>
+    <td>F10</td>
+  </tr>   
+  <tr>
+    <td>.------</td>
+    <td>F11</td>
+  </tr>
+  <tr>
+    <td>..-----</td>
+    <td>F12</td>
+  </tr>    
  </table> 
 
 # Morse code mapping ( Mouse mode )
@@ -421,14 +474,14 @@ This is a light weight morse library based on morse2go project with addition of 
 
   1. Download and extract this repository as EasyMorse under Arduino libraries subdirectory. 
 
-  2. Include EasyMorse class in your sketch 
+  2. Include EasyMorseBlue class in your sketch 
 ```
-#include "EasyMorse.h"
+#include "EasyMorseBlue.h"
 ```
 
   3. Initialize EasyMorse class
 ```
-EasyMorse morse;
+EasyMorseBlue morse;
 ```
   4. Initialize time variables for morse code
 ```
@@ -450,7 +503,7 @@ morse.push(2);
 
   7. Output the character using Keyboard library 
 ```
-Keyboard.write(morse.getCharAscii()); 
+Keyboard.write(morse.getBlueChar()); 
 ```
 
   8. Output the mouse action using mouse library 
@@ -504,7 +557,7 @@ Mouse.move((int)mouseAct[1],(int)mouseAct[2], 0);
     <td>Get the resulting character</td>
   </tr>
   <tr>
-    <td>getCharAscii()</td>
+    <td>getBlueChar()</td>
     <td>int</td>
     <td>Get the resulting character</td>
   </tr>  
