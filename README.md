@@ -18,7 +18,7 @@ This is a light weight morse library based on morse2go project with addition of 
     <td>b</td>
   </tr>
     <tr>
-    <td>-.-.</td>
+    <td>---.</td>
     <td>c</td>
   </tr>
     <tr>
@@ -58,7 +58,7 @@ This is a light weight morse library based on morse2go project with addition of 
     <td>l</td>
   </tr>
     <tr>
-    <td>--</td>
+    <td>----</td>
     <td>m</td>
   </tr>
     <tr>
