@@ -13,7 +13,7 @@
 #define MY_TEST 1  //Testing mode = 0 , Production mode = 1
 #define FACTORYRESET_ENABLE 0
 
-#include "EasyMorseHid.h"
+#include "EasyMorseBlueHid.h"
 #include "EasyMorseBlue.h"
 
 EasyMorseBlue morse;
