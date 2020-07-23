@@ -482,9 +482,9 @@ This is a light weight morse library based on morse2go project with addition of 
 ```
 #include "EasyMorseBlue.h"
 ```
-  4. Include EasyMorseBlueBlue class in your sketch for using keyboard and mouse action functions
+  4. Include EasyMorseBlueHid class in your sketch for using keyboard and mouse action functions
 ```
-#include "EasyMorseHid.h"
+#include "EasyMorseBlueHid.h"
 ```
   5. Initialize EasyMorse morse class
 ```
@@ -534,23 +534,23 @@ int* mouseAct;
 mouseAct=morse.getMouse();
 ```
 
-  15. Enter character key: (EasyMorseHid)
+  15. Enter character key: (EasyMorseBlueHid)
 ```
 enterKeyboardChar(char charachter);
 ```
-  16. Enter character and modifier key code: (EasyMorseHid)
+  16. Enter character and modifier key code: (EasyMorseBlueHid)
 ```
 enterKeyboard(uint8_t modifierCode, uint8_t charachterCode);
 ```
-  17. Release keyboard action: (EasyMorseHid)
+  17. Release keyboard action: (EasyMorseBlueHid)
 ```
 clearKeyboard();
 ```
-  18. Enter mouse action: (EasyMorseHid)
+  18. Enter mouse action: (EasyMorseBlueHid)
 ```
 enterMouse(int button,int xValue,int yValue);
 ```
-  19. Release mouse action: (EasyMorseHid)
+  19. Release mouse action: (EasyMorseBlueHid)
 ```
 clearMouse();
 ```
@@ -627,40 +627,40 @@ clearMouse();
     <td>initializeMouse()</td>
     <td>void</td>
     <td>Initialize mouse function</td>
-   <td>EasyMorseHid</td>
+   <td>EasyMorseBlueHid</td>
   </tr> 
     <tr>
     <td>initializeKeyboard()</td>
     <td>void</td>
     <td>Initialize keyboard function</td>
-   <td>EasyMorseHid</td>
+   <td>EasyMorseBlueHid</td>
   </tr> 
      <tr>
     <td>enterMouse(int button,int xValue,int yValue)</td>
     <td>void</td>
     <td>Mouse action function</td>
-   <td>EasyMorseHid</td>
+   <td>EasyMorseBlueHid</td>
   </tr> 
    <tr>
     <td>clearMouse()</td>
     <td>void</td>
     <td>Release Mouse action function</td>
-   <td>EasyMorseHid</td>
+   <td>EasyMorseBlueHid</td>
   </tr> 
   <tr>
   <td>enterKeyboard(uint8_t modifierCode, uint8_t charachterCode)</td>
     <td>void</td>
     <td>Enter Keyboard charachter and modifier function</td>
-   <td>EasyMorseHid</td>
+   <td>EasyMorseBlueHid</td>
   </tr> 
   <td>enterKeyboardChar(char charachter)</td>
     <td>void</td>
     <td>Enter Keyboard charachter function</td>
-   <td>EasyMorseHid</td>
+   <td>EasyMorseBlueHid</td>
   </tr> 
    <td>clearKeyboard()</td>
     <td>void</td>
     <td>Release Keyboard charachter function</td>
-   <td>EasyMorseHid</td>
+   <td>EasyMorseBlueHid</td>
   </tr> 
 </table> 
