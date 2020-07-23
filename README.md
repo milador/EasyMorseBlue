@@ -473,17 +473,32 @@ This is a light weight morse library based on morse2go project with addition of 
 # Usage 
 
   1. Download and extract this repository as EasyMorse under Arduino libraries subdirectory. 
+  
+  2. Download and Install Bluefruit Arduino library according to the Adafruit instructions: 
+  
+  https://learn.adafruit.com/adafruit-feather-32u4-bluefruit-le/installing-ble-library
 
-  2. Include EasyMorseBlue class in your sketch 
+  3. Include EasyMorseBlue class in your sketch for using morse functions
 ```
 #include "EasyMorseBlue.h"
 ```
-
-  3. Initialize EasyMorse class
+  4. Include EasyMorseBlueBlue class in your sketch for using keyboard and mouse action functions
+```
+#include "EasyMorseHid.h"
+```
+  5. Initialize EasyMorse morse class
 ```
 EasyMorseBlue morse;
 ```
-  4. Initialize time variables for morse code
+  6. Initialize Bluefruit HID Keyboard if you are using EasyMorseBlueBlue class
+```
+initializeKeyboard();
+```
+  7. Initialize Bluefruit HID Mouse if you are using EasyMorseBlueBlue class
+```
+initializeMouse();
+```
+  8. Initialize time variables for morse code
 ```
 unsigned MS_MIN_DD = 50;
 unsigned MS_MAX_DD =5000;
@@ -491,27 +506,53 @@ unsigned MS_END =5000;
 unsigned MS_CL =5000;
 ```
 
-  5. Clear morse stack before each usage (Each dot or dash push)
+  9. Clear morse stack before each usage (Each dot or dash push) (EasyMorseBlue)
 ```
 morse.clear();
 ```
-  6. Push Dot (1) or Dash (2) to the stack
+  10. Push Dot (1) or Dash (2) to the stack: (EasyMorseBlue)
 ```
 morse.push(1);
 morse.push(2);
 ```
 
-  7. Output the character using Keyboard library 
+  11. Get the output character: (EasyMorseBlue)
 ```
-Keyboard.write(morse.getBlueChar()); 
+morse.getChar(); 
 ```
-
-  8. Output the mouse action using mouse library 
+  12. Get the Bluefruit output character key code: (EasyMorseBlue)
+```
+morse.getBlueChar(); 
+```
+  13. Get the Bluefruit output modifier key code: (EasyMorseBlue)
+```
+morse.getBlueModifier(); 
+```
+  14. Get the mouse action: (EasyMorseBlue)
 ```
 int* mouseAct;
 mouseAct=morse.getMouse();
-Mouse.press((int)mouseAct[0]);
-Mouse.move((int)mouseAct[1],(int)mouseAct[2], 0);
+```
+
+  15. Enter character key: (EasyMorseHid)
+```
+enterKeyboardChar(char charachter);
+```
+  16. Enter character and modifier key code: (EasyMorseHid)
+```
+enterKeyboard(uint8_t modifierCode, uint8_t charachterCode);
+```
+  17. Release keyboard action: (EasyMorseHid)
+```
+clearKeyboard();
+```
+  18. Enter mouse action: (EasyMorseHid)
+```
+enterMouse(int button,int xValue,int yValue);
+```
+  19. Release mouse action: (EasyMorseHid)
+```
+clearMouse();
 ```
 
 # Methods 
@@ -520,50 +561,106 @@ Mouse.move((int)mouseAct[1],(int)mouseAct[2], 0);
     <th>Method</th>
     <th>Return Type</th>
     <th>Explanation</th>
+   <th>Class</th>
   </tr>
     <tr>
     <td>pointer</td>
     <td>int</td>
     <td>Pointer to top of the stack</td>
+    <td>EasyMorseBlue</td>
   </tr>
   <tr>
     <td>dotDash[MAXDD]</td>
     <td>int</td>
     <td>Stack of dot and dashes</td>
+   <td>EasyMorseBlue</td>
   </tr>
   <tr>
     <td>clear()</td>
     <td>void</td>
     <td>Clear the stack</td>
+   <td>EasyMorseBlue</td>
   </tr>
   <tr>
     <td>push(int)</td>
     <td>void</td>
     <td>Push a dot or dash to the stack </td>
+   <td>EasyMorseBlue</td>
   </tr>
   <tr>
     <td>pop()</td>
     <td>void</td>
     <td>Pop last dot or dash from the stack</td>
+   <td>EasyMorseBlue</td>
   </tr>
   <tr>
     <td>getCharNum()</td>
     <td>long</td>
     <td>Get number value of character. Example: .- = 12</td>
+   <td>EasyMorseBlue</td>
   </tr>
     <tr>
     <td>getChar()</td>
     <td>char</td>
     <td>Get the resulting character</td>
+     <td>EasyMorseBlue</td>
   </tr>
   <tr>
     <td>getBlueChar()</td>
     <td>int</td>
-    <td>Get the resulting character</td>
+    <td>Get the resulting Bluefruit character code</td>
+   <td>EasyMorseBlue</td>
+  </tr>  
+   <tr>
+    <td>getBlueModifier()</td>
+    <td>int</td>
+    <td>Get the resulting Bluefruit modifier code</td>
+    <td>EasyMorseBlue</td>
   </tr>  
   <tr>
     <td>getMouse()</td>
     <td>int*</td>
     <td>Get the resulting mouse action </td>
+   <td>EasyMorseBlue</td>
   </tr>  
+   <tr>
+    <td>initializeMouse()</td>
+    <td>void</td>
+    <td>Initialize mouse function</td>
+   <td>EasyMorseHid</td>
+  </tr> 
+    <tr>
+    <td>initializeKeyboard()</td>
+    <td>void</td>
+    <td>Initialize keyboard function</td>
+   <td>EasyMorseHid</td>
+  </tr> 
+     <tr>
+    <td>enterMouse(int button,int xValue,int yValue)</td>
+    <td>void</td>
+    <td>Mouse action function</td>
+   <td>EasyMorseHid</td>
+  </tr> 
+   <tr>
+    <td>clearMouse()</td>
+    <td>void</td>
+    <td>Release Mouse action function</td>
+   <td>EasyMorseHid</td>
+  </tr> 
+  <tr>
+  <td>enterKeyboard(uint8_t modifierCode, uint8_t charachterCode)</td>
+    <td>void</td>
+    <td>Enter Keyboard charachter and modifier function</td>
+   <td>EasyMorseHid</td>
+  </tr> 
+  <td>enterKeyboardChar(char charachter)</td>
+    <td>void</td>
+    <td>Enter Keyboard charachter function</td>
+   <td>EasyMorseHid</td>
+  </tr> 
+   <td>clearKeyboard()</td>
+    <td>void</td>
+    <td>Release Keyboard charachter function</td>
+   <td>EasyMorseHid</td>
+  </tr> 
 </table> 
