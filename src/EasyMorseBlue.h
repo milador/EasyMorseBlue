@@ -20,10 +20,10 @@
 #define MS_CL 5000                              //Holding time for dot or dash to clear a letter
 
 typedef struct { 
-  int num;
   long int numCode;
   const char* lowerChar;
-  uint8_t blueCode;
+  uint8_t blueCharCode;
+  uint8_t blueModifierCode;
 } charStruct;
 
 typedef struct { 
@@ -43,7 +43,8 @@ class EasyMorseBlue {
     void pop();                                                    //Pop last dot or dash from the stack    
     long getCharNum();                                            //Get number value of character. Example: .- = 12
     char getChar();                                               //Get the resulting character
-    int getBlueChar();                                           //Get the resulting Ascii code 
+    int getBlueChar();                                            //Get the resulting bluefruit char code 
+	int getBlueModifier();                                        //Get the resulting bluefruit modifier code 
     int* getMouse();                                              //Get the resulting mouse action 
     
 };

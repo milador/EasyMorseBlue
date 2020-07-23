@@ -13,17 +13,10 @@
 #define MY_TEST 1  //Testing mode = 0 , Production mode = 1
 #define FACTORYRESET_ENABLE 0
 
-#include "BluefruitRoutines.h"
+#include "EasyMorseHid.h"
 #include "EasyMorseBlue.h"
 
 EasyMorseBlue morse;
-
-//Send Key Function to ranslate character to keyboard keycode and transmit
-
-void sendKey(char charachter) {
-  ble.print("AT+BleKeyboard=");
-  ble.println(charachter);
-}
 
 //Setup function
 
@@ -31,7 +24,7 @@ void setup() {
   //Initialize serial communications at 9600 bps
   Serial.begin(9600);
   morse.clear();
-  initializeBluefruit();
+  initializeKeyboard();
   initialization();
 }
 
@@ -50,7 +43,7 @@ void initialization() {
 //Main loop function
 
 void loop() {
-    
+  
   //Testing mode
   if(MY_TEST==0){
     //Print Hello
@@ -106,8 +99,22 @@ void loop() {
     delay(1000);
     Serial.print(morse.getChar()); 
     morse.clear(); 
-  
-  
+
+    //!
+    morse.push(1);
+    delay(1000);
+    morse.push(2);
+    delay(1000);
+    morse.push(1);
+    delay(1000);
+    morse.push(1);
+    delay(1000);
+    morse.push(1);
+    delay(1000);
+    morse.push(1);
+    delay(1000);    
+    Serial.print(morse.getChar()); 
+    morse.clear();   
     //Space
     morse.push(1);
     delay(1000);
@@ -136,13 +143,17 @@ void loop() {
     delay(1000);
     morse.push(1);
     delay(1000);
-    sendKey(morse.getChar()); 
+    enterKeyboardChar(morse.getChar()); 
+    delay(100);//de-bounce
+    clearKeyboard();
     morse.clear();
     
     //E
     morse.push(1);
     delay(1000);
-    sendKey(morse.getChar()); 
+    enterKeyboardChar(morse.getChar()); 
+    delay(100);//de-bounce
+    clearKeyboard();
     morse.clear();
     
     //L
@@ -154,7 +165,9 @@ void loop() {
     delay(1000);
     morse.push(1);
     delay(1000);
-    sendKey(morse.getChar()); 
+    enterKeyboardChar(morse.getChar()); 
+    delay(100);//de-bounce
+    clearKeyboard();
     morse.clear();
       
     //L
@@ -166,7 +179,9 @@ void loop() {
     delay(1000);
     morse.push(1);
     delay(1000);
-    sendKey(morse.getChar()); 
+    enterKeyboardChar(morse.getChar()); 
+    delay(100);//de-bounce
+    clearKeyboard();
     morse.clear();
   
     //O
@@ -176,8 +191,28 @@ void loop() {
     delay(1000);
     morse.push(2);
     delay(1000);
-    sendKey(morse.getChar()); 
-    morse.clear(); 
+    enterKeyboardChar(morse.getChar()); 
+    delay(100);//de-bounce
+    clearKeyboard();
+    morse.clear();
+
+    //!
+    morse.push(1);
+    delay(1000);
+    morse.push(2);
+    delay(1000);
+    morse.push(1);
+    delay(1000);
+    morse.push(1);
+    delay(1000);
+    morse.push(1);
+    delay(1000);
+    morse.push(1);
+    delay(1000);    
+    enterKeyboardChar(morse.getChar()); 
+    delay(100);//de-bounce   
+    clearKeyboard();
+    morse.clear();    
   
     //Space
     morse.push(1);
@@ -188,10 +223,13 @@ void loop() {
     delay(1000);
     morse.push(2);
     delay(1000);
-    sendKey(morse.getChar()); 
-    
+    enterKeyboardChar(morse.getChar()); 
+    delay(100);//de-bounce
+    clearKeyboard();
     morse.clear();
+    
     delay(50);
   }
+
   delay(2000);
 }
