@@ -731,13 +731,13 @@ clearMouse();
    <td>EasyMorseBlue</td>
   </tr>  
    <tr>
-    <td>initializeMouse()</td>
+    <td>initializeMouse(String name)</td>
     <td>void</td>
     <td>Initialize mouse function</td>
    <td>EasyMorseBlueHid</td>
   </tr> 
     <tr>
-    <td>initializeKeyboard()</td>
+    <td>initializeKeyboard(String name)</td>
     <td>void</td>
     <td>Initialize keyboard function</td>
    <td>EasyMorseBlueHid</td>
