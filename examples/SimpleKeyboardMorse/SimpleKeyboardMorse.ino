@@ -24,7 +24,7 @@ void setup() {
   //Initialize serial communications at 9600 bps
   Serial.begin(9600);
   morse.clear();
-  initializeKeyboard();
+  initializeKeyboard("EasyMorse Keyboard");
   initialization();
 }
 

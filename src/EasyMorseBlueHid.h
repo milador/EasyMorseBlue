@@ -6,6 +6,7 @@
 #include "EasyMorseBlueConfig.h"
 Adafruit_BluefruitLE_SPI ble(BLUEFRUIT_SPI_CS, BLUEFRUIT_SPI_IRQ, BLUEFRUIT_SPI_RST);
 
+#define NAME "EasyMorse"
 //Debug output routines
 #if (MY_DEBUG)
   #define MESSAGE(m) Serial.println(m);
@@ -17,27 +18,31 @@ Adafruit_BluefruitLE_SPI ble(BLUEFRUIT_SPI_CS, BLUEFRUIT_SPI_IRQ, BLUEFRUIT_SPI_
 
 //***INITIALIZE BLUETOOTH MOUSE FUNCTION***//
 
-void initializeMouse (void) {
-  if ( !ble.begin(MY_DEBUG))
-  {
-    FATAL(F("NO BLE?"));
-  }
-  //Rename device
-  if (! ble.sendCommandCheckOK(F( "AT+GAPDEVNAME=EasyMorseBlue Mouse" )) ) {
-    FATAL(F("err:rename fail"));
-  }
-  //Enable HID keyboard
-  if(!ble.sendCommandCheckOK(F( "AT+BleHIDEn=On" ))) {
-    FATAL(F("err:enable Kb"));
-  }
-  //Add or remove service requires a reset
-  if ( FACTORYRESET_ENABLE )
-  {
-    /* Perform a factory reset to make sure everything is in a known state */
-    if ( ! ble.factoryReset() ){
-      FATAL(F("err:SW reset"));
-    }
-  }
+void initializeMouse (String name) {
+	String strNameCmd = "AT+GAPDEVNAME="+name; 
+	int strNameLen = strNameCmd.length() + 1; 
+	char charNameCmd[strNameLen];
+	strNameCmd.toCharArray(charNameCmd, strNameLen);
+	if ( !ble.begin(MY_DEBUG))
+	{
+	FATAL(F("NO BLE?"));
+	}
+	//Rename device
+	if (! ble.sendCommandCheckOK(charNameCmd)) {
+	FATAL(F("err:rename fail"));
+	}
+	//Enable HID keyboard
+	if(!ble.sendCommandCheckOK(F( "AT+BleHIDEn=On" ))) {
+	FATAL(F("err:enable Kb"));
+	}
+	//Add or remove service requires a reset
+	if ( FACTORYRESET_ENABLE )
+	{
+	/* Perform a factory reset to make sure everything is in a known state */
+	if ( ! ble.factoryReset() ){
+	  FATAL(F("err:SW reset"));
+	}
+	}
 }
 
 //***PERFORM MOUSE ACTIONS FUNCTION***//
@@ -89,13 +94,17 @@ void clearMouse(void) {
 
 //***INITIALIZE BLUETOOTH KEYBOARD FUNCTION***//
 
-void initializeKeyboard (void) {
+void initializeKeyboard (String name) {
+	String strNameCmd = "AT+GAPDEVNAME="+name; 
+	int strNameLen = strNameCmd.length() + 1; 
+	char charNameCmd[strNameLen];
+	strNameCmd.toCharArray(charNameCmd, strNameLen);
   if ( !ble.begin(MY_DEBUG))
   {
     FATAL(F("NO BLE?"));
   }
   //Rename device
-  if (! ble.sendCommandCheckOK(F( "AT+GAPDEVNAME=EasyMorseBlue Keyboard" )) ) {
+  if (! ble.sendCommandCheckOK(charNameCmd) ) {
     FATAL(F("err:rename fail"));
   }
   //Enable HID keyboard
