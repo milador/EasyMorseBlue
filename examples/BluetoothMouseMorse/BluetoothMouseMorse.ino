@@ -9,9 +9,7 @@
 //
 /////////////////////////////////////
 
-#define MY_DEBUG 1
 #define MY_TEST 1  //Testing mode = 0 , Production mode = 1
-#define FACTORYRESET_ENABLE 0
 
 #include "EasyMorseBlueHid.h"
 #include "EasyMorseBlue.h"

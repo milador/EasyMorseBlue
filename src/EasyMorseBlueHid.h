@@ -6,7 +6,9 @@
 #include "EasyMorseBlueConfig.h"
 Adafruit_BluefruitLE_SPI ble(BLUEFRUIT_SPI_CS, BLUEFRUIT_SPI_IRQ, BLUEFRUIT_SPI_RST);
 
-#define NAME "EasyMorse"
+#define MY_DEBUG 1
+#define FACTORYRESET_ENABLE 0
+
 //Debug output routines
 #if (MY_DEBUG)
   #define MESSAGE(m) Serial.println(m);
