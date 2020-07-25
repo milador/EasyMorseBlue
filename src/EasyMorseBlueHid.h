@@ -9,7 +9,6 @@ Adafruit_BluefruitLE_SPI ble(BLUEFRUIT_SPI_CS, BLUEFRUIT_SPI_IRQ, BLUEFRUIT_SPI_
 #define MY_DEBUG 1
 #define FACTORYRESET_ENABLE 0
 
-//Debug output routines
 #if (MY_DEBUG)
   #define MESSAGE(m) Serial.println(m);
   #define FATAL(m) {MESSAGE(m); while (1);}
@@ -18,9 +17,9 @@ Adafruit_BluefruitLE_SPI ble(BLUEFRUIT_SPI_CS, BLUEFRUIT_SPI_IRQ, BLUEFRUIT_SPI_
   #define FATAL(m) while (1);
 #endif
 
-//***INITIALIZE BLUETOOTH MOUSE FUNCTION***//
+//***INITIALIZE BLUETOOTH HID DEVICE FUNCTION***//
 
-void initializeMouse (String name) {
+void initializeHidMorse(String name) {
 	String strNameCmd = "AT+GAPDEVNAME="+name; 
 	int strNameLen = strNameCmd.length() + 1; 
 	char charNameCmd[strNameLen];
@@ -94,35 +93,6 @@ void clearMouse(void) {
   ble.println(F("AT+BLEHIDMOUSEBUTTON=0"));
 }
 
-//***INITIALIZE BLUETOOTH KEYBOARD FUNCTION***//
-
-void initializeKeyboard (String name) {
-	String strNameCmd = "AT+GAPDEVNAME="+name; 
-	int strNameLen = strNameCmd.length() + 1; 
-	char charNameCmd[strNameLen];
-	strNameCmd.toCharArray(charNameCmd, strNameLen);
-  if ( !ble.begin(MY_DEBUG))
-  {
-    FATAL(F("NO BLE?"));
-  }
-  //Rename device
-  if (! ble.sendCommandCheckOK(charNameCmd) ) {
-    FATAL(F("err:rename fail"));
-  }
-  //Enable HID keyboard
-  if(!ble.sendCommandCheckOK(F( "AT+BleHIDEn=On" ))) {
-    FATAL(F("err:enable Kb"));
-  }
-  //Add or remove service requires a reset
-  if ( FACTORYRESET_ENABLE )
-  {
-    /* Perform a factory reset to make sure everything is in a known state */
-    if ( ! ble.factoryReset() ){
-      FATAL(F("err:SW reset"));
-    }
-  }
-
-}
 
 //***ENTER KEYBOARD ACTIONS FUNCTION***//
 

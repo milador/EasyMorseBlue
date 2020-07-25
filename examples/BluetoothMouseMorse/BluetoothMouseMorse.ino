@@ -25,7 +25,7 @@ void setup() {
   //Initialize serial communications at 9600 bps
   Serial.begin(9600);
   morse.clear();
-  initializeMouse("EasyMorse Mouse");
+  initializeHidMorse("EasyMorse Mouse");
   initialization();
 }
 

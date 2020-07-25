@@ -24,7 +24,7 @@ void setup() {
   //Initialize serial communications at 9600 bps
   Serial.begin(9600);
   morse.clear();
-  initializeKeyboard("EasyMorse Keyboard");
+  initializeHidMorse("EasyMorse Keyboard");
   initialization();
 }
 
@@ -43,195 +43,101 @@ void initialization() {
 //Main loop function
 
 void loop() {
-
-
-  //Testing mode
-  if(MY_TEST==0){
-    //Print Hello
-
-    //H
-    morse.push(1);
-    delay(1000);
-    morse.push(1);
-    delay(1000);
-    morse.push(1);
-    delay(1000);
-    morse.push(1);
-    delay(1000);
-    Serial.print(morse.getChar()); 
-    morse.clear();
-    
-    //E
-    morse.push(1);
-    delay(1000);
-    Serial.print(morse.getChar()); 
-    morse.clear();
-    
-    //L
-    morse.push(1);
-    delay(1000);
-    morse.push(2);
-    delay(1000);
-    morse.push(1);
-    delay(1000);
-    morse.push(1);
-    delay(1000);
-    Serial.print(morse.getChar()); 
-    morse.clear();
-      
-    //L
-    morse.push(1);
-    delay(1000);
-    morse.push(2);
-    delay(1000);
-    morse.push(1);
-    delay(1000);
-    morse.push(1);
-    delay(1000);
-    Serial.print(morse.getChar()); 
-    morse.clear();
+  //Type Hello
   
-    //O
-    morse.push(2);
-    delay(1000);
-    morse.push(2);
-    delay(1000);
-    morse.push(2);
-    delay(1000);
-    Serial.print(morse.getChar()); 
-    morse.clear(); 
+  //H
+  morse.push(1);
+  delay(1000);
+  morse.push(1);
+  delay(1000);
+  morse.push(1);
+  delay(1000);
+  morse.push(1);
+  delay(1000);
+  enterKeyboard(morse.getBlueModifier(),morse.getBlueChar()); 
+  delay(100);//de-bounce
+  clearKeyboard();
+  morse.clear();
   
-    //!
-    morse.push(1);
-    delay(1000);
-    morse.push(2);
-    delay(1000);
-    morse.push(1);
-    delay(1000);
-    morse.push(1);
-    delay(1000);
-    morse.push(1);
-    delay(1000);
-    morse.push(1);
-    delay(1000);
-    Serial.print(morse.getChar()); 
-    morse.clear(); 
-          
-    //Space
-    morse.push(1);
-    delay(1000);
-    morse.push(1);
-    delay(1000);
-    morse.push(2);
-    delay(1000);
-    morse.push(2);
-    delay(1000);
-    Serial.print(morse.getChar()); 
-    morse.clear();
-
-    delay(50);
-  }
-  //Production mode
-  else 
-  {
-    //Type Hello
-
-    //H
-    morse.push(1);
-    delay(1000);
-    morse.push(1);
-    delay(1000);
-    morse.push(1);
-    delay(1000);
-    morse.push(1);
-    delay(1000);
-    enterKeyboard(morse.getBlueModifier(),morse.getBlueChar()); 
-    delay(100);//de-bounce
-    clearKeyboard();
-    morse.clear();
-    
-    //E
-    morse.push(1);
-    delay(1000);
-    enterKeyboard(morse.getBlueModifier(),morse.getBlueChar()); 
-    delay(100);//de-bounce
-    clearKeyboard();
-    morse.clear();
-    
-    //L
-    morse.push(1);
-    delay(1000);
-    morse.push(2);
-    delay(1000);
-    morse.push(1);
-    delay(1000);
-    morse.push(1);
-    delay(1000);
-    enterKeyboard(morse.getBlueModifier(),morse.getBlueChar()); 
-    delay(100);//de-bounce
-    clearKeyboard();
-    morse.clear();
-      
-    //L
-    morse.push(1);
-    delay(1000);
-    morse.push(2);
-    delay(1000);
-    morse.push(1);
-    delay(1000);
-    morse.push(1);
-    delay(1000);
-    enterKeyboard(morse.getBlueModifier(),morse.getBlueChar()); 
-    delay(100);//de-bounce
-    clearKeyboard();
-    morse.clear();
+  //E
+  morse.push(1);
+  delay(1000);
+  enterKeyboard(morse.getBlueModifier(),morse.getBlueChar()); 
+  delay(100);//de-bounce
+  clearKeyboard();
+  morse.clear();
   
-    //O
-    morse.push(2);
-    delay(1000);
-    morse.push(2);
-    delay(1000);
-    morse.push(2);
-    delay(1000);
-    enterKeyboard(morse.getBlueModifier(),morse.getBlueChar()); 
-    delay(100);//de-bounce
-    clearKeyboard();
-    morse.clear(); 
-
-    //!
-    morse.push(1);
-    delay(1000);
-    morse.push(2);
-    delay(1000);
-    morse.push(1);
-    delay(1000);
-    morse.push(1);
-    delay(1000);
-    morse.push(1);
-    delay(1000);
-    morse.push(1);
-    delay(1000);
-    enterKeyboard(morse.getBlueModifier(),morse.getBlueChar()); 
-    delay(100);//de-bounce
-    clearKeyboard();
-    morse.clear(); 
+  //L
+  morse.push(1);
+  delay(1000);
+  morse.push(2);
+  delay(1000);
+  morse.push(1);
+  delay(1000);
+  morse.push(1);
+  delay(1000);
+  enterKeyboard(morse.getBlueModifier(),morse.getBlueChar()); 
+  delay(100);//de-bounce
+  clearKeyboard();
+  morse.clear();
     
-    //Space
-    morse.push(1);
-    delay(1000);
-    morse.push(1);
-    delay(1000);
-    morse.push(2);
-    delay(1000);
-    morse.push(2);
-    delay(1000);
-    enterKeyboard(morse.getBlueModifier(),morse.getBlueChar()); 
-    delay(100);//de-bounce
-    clearKeyboard();
-    morse.clear();
-    
-    delay(50);
-  }
+  //L
+  morse.push(1);
+  delay(1000);
+  morse.push(2);
+  delay(1000);
+  morse.push(1);
+  delay(1000);
+  morse.push(1);
+  delay(1000);
+  enterKeyboard(morse.getBlueModifier(),morse.getBlueChar()); 
+  delay(100);//de-bounce
+  clearKeyboard();
+  morse.clear();
+  
+  //O
+  morse.push(2);
+  delay(1000);
+  morse.push(2);
+  delay(1000);
+  morse.push(2);
+  delay(1000);
+  enterKeyboard(morse.getBlueModifier(),morse.getBlueChar()); 
+  delay(100);//de-bounce
+  clearKeyboard();
+  morse.clear(); 
+  
+  //!
+  morse.push(1);
+  delay(1000);
+  morse.push(2);
+  delay(1000);
+  morse.push(1);
+  delay(1000);
+  morse.push(1);
+  delay(1000);
+  morse.push(1);
+  delay(1000);
+  morse.push(1);
+  delay(1000);
+  enterKeyboard(2,morse.getBlueChar()); 
+  delay(100);//de-bounce
+  clearKeyboard();
+  morse.clear(); 
+  
+  //Space
+  morse.push(1);
+  delay(1000);
+  morse.push(1);
+  delay(1000);
+  morse.push(2);
+  delay(1000);
+  morse.push(2);
+  delay(1000);
+  enterKeyboard(morse.getBlueModifier(),morse.getBlueChar()); 
+  delay(100);//de-bounce
+  clearKeyboard();
+  morse.clear();
   
   delay(2000);
 }
