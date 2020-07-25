@@ -216,12 +216,12 @@ This is a light weight morse library based on morse2go project with addition of 
 <td></td>
 </tr>
 <tr>
-<td>---.</td>
+<td>.---.</td>
 <td>-</td>
 <td></td>
 </tr>
 <tr>
-<td>.--.-</td>
+<td>---.-</td>
 <td>=</td>
 <td></td>
 </tr>
@@ -241,7 +241,7 @@ This is a light weight morse library based on morse2go project with addition of 
 <td></td>
 </tr>
 <tr>
-<td>-.---</td>
+<td>..---.</td>
 <td>#</td>
 <td></td>
 </tr>
@@ -251,7 +251,7 @@ This is a light weight morse library based on morse2go project with addition of 
 <td></td>
 </tr>
 <tr>
-<td>..-..-</td>
+<td>..-...</td>
 <td>'</td>
 <td></td>
 </tr>
@@ -276,7 +276,7 @@ This is a light weight morse library based on morse2go project with addition of 
 <td></td>
 </tr>
 <tr>
-<td>..-.-.</td>
+<td>-----.</td>
 <td>CapsLock</td>
 <td></td>
 </tr>
@@ -411,12 +411,12 @@ This is a light weight morse library based on morse2go project with addition of 
 <td></td>
 </tr>
 <tr>
-<td>.-...</td>
+<td>-..--</td>
 <td>*</td>
 <td></td>
 </tr>
 <tr>
-<td>.--..</td>
+<td>-...-</td>
 <td>+</td>
 <td></td>
 </tr>
@@ -597,15 +597,11 @@ This is a light weight morse library based on morse2go project with addition of 
 ```
 EasyMorseBlue morse;
 ```
-  6. Initialize Bluefruit HID Keyboard if you are using EasyMorseBlueBlue class
+  6. Initialize Bluefruit HID Keyboard/Mouse if you are using EasyMorseBlueBlue class
 ```
-initializeKeyboard();
+initializeHidMorse();
 ```
-  7. Initialize Bluefruit HID Mouse if you are using EasyMorseBlueBlue class
-```
-initializeMouse();
-```
-  8. Initialize time variables for morse code
+  7. Initialize time variables for morse code
 ```
 unsigned MS_MIN_DD = 50;
 unsigned MS_MAX_DD =5000;
@@ -613,51 +609,51 @@ unsigned MS_END =5000;
 unsigned MS_CL =5000;
 ```
 
-  9. Clear morse stack before each usage (Each dot or dash push) (EasyMorseBlue)
+  8. Clear morse stack before each usage (Each dot or dash push) (EasyMorseBlue)
 ```
 morse.clear();
 ```
-  10. Push Dot (1) or Dash (2) to the stack: (EasyMorseBlue)
+  9. Push Dot (1) or Dash (2) to the stack: (EasyMorseBlue)
 ```
 morse.push(1);
 morse.push(2);
 ```
 
-  11. Get the output character: (EasyMorseBlue)
+  10. Get the output character: (EasyMorseBlue)
 ```
 morse.getChar(); 
 ```
-  12. Get the Bluefruit output character key code: (EasyMorseBlue)
+  11. Get the Bluefruit output character key code: (EasyMorseBlue)
 ```
 morse.getBlueChar(); 
 ```
-  13. Get the Bluefruit output modifier key code: (EasyMorseBlue)
+  12. Get the Bluefruit output modifier key code: (EasyMorseBlue)
 ```
 morse.getBlueModifier(); 
 ```
-  14. Get the mouse action: (EasyMorseBlue)
+  13. Get the mouse action: (EasyMorseBlue)
 ```
 int* mouseAct;
 mouseAct=morse.getMouse();
 ```
 
-  15. Enter character key: (EasyMorseBlueHid)
+  14. Enter character key: (EasyMorseBlueHid)
 ```
 enterKeyboardChar(char charachter);
 ```
-  16. Enter character and modifier key code: (EasyMorseBlueHid)
+  15. Enter character and modifier key code: (EasyMorseBlueHid)
 ```
 enterKeyboard(uint8_t modifierCode, uint8_t charachterCode);
 ```
-  17. Release keyboard action: (EasyMorseBlueHid)
+  16. Release keyboard action: (EasyMorseBlueHid)
 ```
 clearKeyboard();
 ```
-  18. Enter mouse action: (EasyMorseBlueHid)
+  17. Enter mouse action: (EasyMorseBlueHid)
 ```
 enterMouse(int button,int xValue,int yValue);
 ```
-  19. Release mouse action: (EasyMorseBlueHid)
+  18. Release mouse action: (EasyMorseBlueHid)
 ```
 clearMouse();
 ```
@@ -731,15 +727,9 @@ clearMouse();
    <td>EasyMorseBlue</td>
   </tr>  
    <tr>
-    <td>initializeMouse(String name)</td>
+    <td>initializeHidMorse(String name)</td>
     <td>void</td>
-    <td>Initialize mouse function</td>
-   <td>EasyMorseBlueHid</td>
-  </tr> 
-    <tr>
-    <td>initializeKeyboard(String name)</td>
-    <td>void</td>
-    <td>Initialize keyboard function</td>
+    <td>Initialize HID Device function</td>
    <td>EasyMorseBlueHid</td>
   </tr> 
      <tr>
