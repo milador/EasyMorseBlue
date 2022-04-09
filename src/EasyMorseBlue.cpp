@@ -1,24 +1,19 @@
 //EasyMorseBlue Library
 //EasyMorseBlue.cpp
 //Written by: Milad Hajihassan
-//Version 1.0 (16/7/2020)
+//Version 1.1 (08/4/2022)
 //Based on : https://github.com/morse2go/morse2go
 
 /*
-
 MIT License
-
 Copyright (c) 2019 Milador
-
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, 
 including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, 
 subject to the following conditions:
-
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
 IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH 
 THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
 */
 
 #include <stdlib.h>
@@ -157,10 +152,8 @@ void EasyMorseBlue::pop() {
 //Get number value of character. Example: .- = 12
 long EasyMorseBlue::getCharNum() {
   long mult = 1L;
-  int i;
   long charNum = 0;
-  long long charNum1 = 0;
-  for (i = pointer-1; i > -1; i--) {
+  for (int i = pointer-1; i > -1; i--) {
     charNum = charNum + (dotDash[i] * mult);
     mult = mult * 10;
   }
@@ -168,9 +161,8 @@ long EasyMorseBlue::getCharNum() {
 }
 
 //Get the resulting character 
-char EasyMorseBlue::getChar() {  
-  int j;
-  char charOut;
+char EasyMorseBlue::getChar() {
+  char charOut = '\0';
   long charNum = getCharNum();
 
   //Search for character based on character number
@@ -186,7 +178,6 @@ char EasyMorseBlue::getChar() {
 
 //Get the resulting bluefruit char code 
 int EasyMorseBlue::getBlueChar() {  
-  int j;
   int codeOut = 0;
   long charNum = getCharNum();
   //Search for Ascii code based on character number
@@ -201,7 +192,6 @@ int EasyMorseBlue::getBlueChar() {
 
 //Get the resulting bluefruit modifier code 
 int EasyMorseBlue::getBlueModifier() {  
-  int j;
   int codeOut = 0;
   long charNum = getCharNum();
   //Search for Ascii code based on character number
@@ -216,7 +206,6 @@ int EasyMorseBlue::getBlueModifier() {
 
 //Get the resulting mouse action 
 int* EasyMorseBlue::getMouse() {  
-  int j;
   static int mouseAction[4];
   mouseAction[0]= 0;
   mouseAction[1]= 0;
